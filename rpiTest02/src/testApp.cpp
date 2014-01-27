@@ -2,7 +2,9 @@
 
 
 int tritimer;
+int tritimerlimit;
 int tritimer2;
+int tritimer2limit;
 int w;
 int h;
 ofMesh trik2;
@@ -17,7 +19,6 @@ void testApp::setup(){
     fbo.allocate(w,h);
 	fbo.getTextureReference().setTextureMinMagFilter(GL_NEAREST,GL_NEAREST);    
     //settings
-    ofEnableNormalizedTexCoords();
     ofSetMinMagFilters(GL_NEAREST, GL_NEAREST); 
     
     // Clear the FBO's
@@ -31,6 +32,10 @@ void testApp::setup(){
     fbo.end();
 
     tritimer = 0;
+    tritimer2 = 0;
+    tritimerlimit=30;
+    tritimer2limit=45;
+    
 }
 
 //--------------------------------------------------------------
@@ -39,25 +44,6 @@ void testApp::update(){
     tritimer2++;
     w = ofGetWidth();
     h = ofGetHeight();
-    if(tritimer2>45){
-        //re-generate the feedback triangles
-        float xpt, ypt,xoff,yoff,xtoff,ytoff;
-        trik2.clear();
-        for(int b = 0;b<5;b++){
-            xoff = ofRandomf()*0.1;
-            yoff = ofRandomf()*0.1;
-            xtoff = ofRandomf()*0.5;
-            ytoff = ofRandomf()*0.5;
-            for(int i=0;i<3;i++){
-                xpt = ofRandomuf()+xtoff;
-                ypt = ofRandomuf()+ytoff;
-                trik2.addVertex(ofVec3f((xpt+xoff)*w,(ypt+yoff)*h,0));
-                trik2.addTexCoord(ofVec2f(xpt,ypt));
-                trik2.addColor(ofFloatColor(1,1,1));
-            }
-        }
-        tritimer2=0;
-    }
 }
 
 //--------------------------------------------------------------
@@ -69,9 +55,9 @@ void testApp::draw(){
         fbfbo.getTextureReference().bind();
         trik2.draw();
         fbfbo.getTextureReference().unbind();
-
+        
         ofSetColor(255,255,255);
-    if(tritimer>30){
+    if(tritimer>tritimerlimit){
         float xpt, ypt,xtoff,ytoff;
         //draw gradient splashes
         ofMesh trik;
@@ -82,11 +68,35 @@ void testApp::draw(){
                 xpt = ofRandomuf()*2+xtoff;
                 ypt = ofRandomuf()*2+ytoff;
                 trik.addVertex(ofVec3f(xpt*w,ypt*h,0));
-                trik.addColor(ofFloatColor(float(ofRandomuf()>0.5)*0.4+0.5,float(ofRandomuf()>0.5)*0.4+0.5,float(ofRandomuf()>0.5)*0.4+0.5));
+                trik.addColor(ofFloatColor(float(ofRandomuf()>0.5)*0.6+0.4,float(ofRandomuf()>0.5)*0.5+0.5,float(ofRandomuf()>0.5)*0.7+0.3));
             }
         }
         trik.draw();
         tritimer = 0;
+        tritimerlimit= ofRandom(20,200);
+    }
+    
+    if(tritimer2>45){
+        //re-generate the feedback triangles
+        float xpt, ypt,xoff,yoff,xtoff,ytoff;
+        trik2.clear();
+        //ofEnableNormalizedTexCoords();
+        for(int b = 0;b<5;b++){
+            xoff = ofRandomf()*0.1;
+            yoff = ofRandomf()*0.1;
+            xtoff = ofRandomf()*0.5;
+            ytoff = ofRandomf()*0.5;
+            for(int i=0;i<3;i++){
+                xpt = ofRandomuf()+xtoff;
+                ypt = ofRandomuf()+ytoff;
+                trik2.addVertex(ofVec3f((xpt+xoff)*w,(ypt+yoff)*h,0));
+                trik2.addTexCoord(ofVec2f(xpt*w,ypt*h));
+                trik2.addColor(ofFloatColor(1,1,1));
+            }
+        }
+        tritimer2=0;
+        tritimer2limit= ofRandom(20,200);
+        //ofDisableNormalizedTexCoords();
     }
     fbo.end();
     fbfbo.begin();
