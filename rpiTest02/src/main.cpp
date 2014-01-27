@@ -3,6 +3,9 @@
 
 //========================================================================
 int main( ){
+#ifdef TARGET_OPENGLES
+    ofSetCurrentRenderer(ofGLProgrammableRenderer::TYPE);
+#endif
 
   	ofSetupOpenGL(1280,720, OF_WINDOW);			// <-------- setup the GL context
 
