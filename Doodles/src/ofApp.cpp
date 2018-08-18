@@ -6,8 +6,8 @@ void ofApp::setup(){
     w = ofGetWidth();
     h = ofGetHeight();
     
-    fbo1.allocate(w, h, GL_RGBA32F);
-    fbo2.allocate(w, h, GL_RGBA32F);
+    fbo1.allocate(w, h);
+    fbo2.allocate(w, h);
 
     filler.load("shaders/heightflow");
     boss.load("shaders/bossr");
