@@ -15,7 +15,7 @@ varying vec2 texc;
 
 void main(void){
     texc = texcoord;
-    gl_Position = modelViewProjectionMatrix * gl_Vertex;
+    gl_Position = modelViewProjectionMatrix * position;
 }
 #else
 varying vec2 texc;
