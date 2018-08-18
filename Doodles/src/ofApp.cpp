@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofDisableArbTex();
     time = 0;
     w = ofGetWidth();
     h = ofGetHeight();
