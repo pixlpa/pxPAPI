@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofDisableArbTex();
+    ofEnableNormalizedTexCoords();
     time = 0;
     w = ofGetWidth();
     h = ofGetHeight();

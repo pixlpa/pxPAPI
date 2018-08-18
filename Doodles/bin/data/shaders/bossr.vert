@@ -17,5 +17,4 @@ varying vec2 texc;
 void main(void){
     texc = texcoord;
     gl_Position = modelViewProjectionMatrix * gl_Vertex;
-    gl_FrontColor = vec4(1.);
 }
