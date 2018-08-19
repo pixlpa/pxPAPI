@@ -17,9 +17,9 @@ void ofApp::setup(){
     noisy.load("shaders/noisegen");
     boss.begin();
     boss.setUniform2f("size", 1280, 720);
-    boss.setUniform1f("hscale",30);
+    boss.setUniform1f("hscale",40);
     boss.setUniform1f("nscale",1);
-    boss.setUniform1f("dthresh",0.5f);
+    boss.setUniform1f("dthresh",0.6f);
     boss.setUniform1f("dfade",0.05f);
     boss.setUniform1f("brightness",0.78f);
     boss.setUniform3f("lightpos",0.665,0.15,3);
@@ -46,7 +46,7 @@ void ofApp::setup(){
     fbo2.begin();
     ofClear(0,0,0,255);
     ofSetColor(20,80,200);
-    ofDrawCircle(1024,600,100);
+    ofDrawCircle(640,360,100);
     fbo2.end();
     
     noisefbo.begin();
