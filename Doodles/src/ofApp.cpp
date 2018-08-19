@@ -8,32 +8,34 @@ void ofApp::setup(){
     w = ofGetWidth();
     h = ofGetHeight();
     
-    fbo1.allocate(2048,2048);
-    fbo2.allocate(2048, 2048);
+    fbo1.allocate(1280,720);
+    fbo2.allocate(1280,720);
+    noisefbo.allocate(1280,720);
 
     filler.load("shaders/heightflow");
     boss.load("shaders/bossr");
+    noisy.load("shaders/noisegen");
     boss.begin();
-    boss.setUniform2f("size", 2048, 2048);
+    boss.setUniform2f("size", 1280, 720);
     boss.setUniform1f("hscale",50);
     boss.setUniform1f("nscale",1);
     boss.setUniform1f("dthresh",0.5f);
     boss.setUniform1f("dfade",0.05f);
-    boss.setUniform1f("brightness",0.5f);
+    boss.setUniform1f("brightness",0.78f);
     boss.setUniform3f("lightpos",0.665,0.15,3);
     boss.setUniform2f("offset",0.5,0.5);
     boss.end();
     
     filler.begin();
-    filler.setUniform2f("size", 2048, 2048);
-    filler.setUniform1f("power",0.9f);
+    filler.setUniform2f("size", 1280, 720);
+    filler.setUniform1f("power",2.1f);
     filler.setUniform1f( "offset",2.5f);
-    filler.setUniform1f( "bright",1.01f);
+    filler.setUniform1f( "bright",1.0046f);
     filler.setUniform1f( "dark",0.004f);
-    filler.setUniform1f("contrast",1.006f);
-    filler.setUniform1f("warp",4.0f);
+    filler.setUniform1f("contrast",1.007f);
+    filler.setUniform1f("warp",3.0f);
     filler.setUniform2f("shift",0.0f,-1.2f);
-    filler.setUniform1f("mixin",0.011f);
+    filler.setUniform1f("mixin",0.0095f);
     filler.setUniform1f("aspect",w/h);
     filler.setUniform1f("time",time);
     filler.end();
@@ -46,6 +48,13 @@ void ofApp::setup(){
     ofSetColor(20,80,200);
     ofDrawCircle(1024,600,100);
     fbo2.end();
+    
+    noisefbo.begin();
+    noisy.begin();
+    noisy.setUniform2f("size",1280,720);
+    fbo1.draw(0,0);
+    noisy.end();
+    noisefbo.end();
 }
 
 //--------------------------------------------------------------
@@ -64,6 +73,7 @@ void ofApp::draw(){
     filler.begin();
     //filler.setUniform2f("size", w, h);
     filler.setUniform1f("time",time);
+    filler.setUniformTexture("tex1",noisefbo.getTexture(),1);
     fbo2.draw(0,0);
     filler.end();
     fbo1.end();
@@ -75,7 +85,7 @@ void ofApp::draw(){
     boss.end();
     //ofDrawCircle(640,360,100);
     fbo2.end();
-    fbo2.draw(0,0,1280,1280);
+    fbo2.draw(0,0);
 }
 
 //--------------------------------------------------------------

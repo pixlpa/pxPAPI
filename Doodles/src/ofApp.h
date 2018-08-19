@@ -23,9 +23,11 @@ public:
     
     ofFbo fbo1;
     ofFbo fbo2;
+    ofFbo noisefbo;
     int w, h;
     ofShader filler;
     ofShader boss;
+    ofShader noisy;
     float time;
 };
 
