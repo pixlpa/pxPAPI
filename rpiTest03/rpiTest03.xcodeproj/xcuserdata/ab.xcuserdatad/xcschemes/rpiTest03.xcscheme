@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "rpiTest03.app"
-               BlueprintName = "rpiTest03"
-               ReferencedContainer = "container:rpiTest03.xcodeproj">
+               BuildableName = "rpiTest02.app"
+               BlueprintName = "rpiTest02"
+               ReferencedContainer = "container:rpiTest02.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "rpiTest03.app"
-            BlueprintName = "rpiTest03"
-            ReferencedContainer = "container:rpiTest03.xcodeproj">
+            BuildableName = "rpiTest02.app"
+            BlueprintName = "rpiTest02"
+            ReferencedContainer = "container:rpiTest02.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -32,8 +32,8 @@ void main(void)
 {
     vec2 texcord = texc;
     vec2 ntexc = texc*vec2(size.x/size.y,1.);
-    float a = smoothstep(-0.2,0.5,noise(ntexc*40.+vec2(0.,-time*0.4)))*0.5+0.5;
-    vec2 c = vec2(noise(ntexc*5.+vec2(time*0.1,0.)),noise(ntexc*5.+vec2(5.)+vec2(0.,time*0.2)))*0.5+vec2(0.5);
+    float a = smoothstep(-0.2,0.5,noise(ntexc*50.+vec2(0.,-time*0.4)))*0.5+0.5;
+    vec2 c = vec2(noise(ntexc*8.+vec2(time*0.1,0.)),noise(ntexc*8.+vec2(25.)+vec2(0.,time*0.2)))*0.5+vec2(0.5);
     gl_FragColor = vec4(a,c,1.);
 }
 

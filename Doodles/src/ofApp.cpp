@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofDisableArbTex();
-    //ofEnableNormalizedTexCoords();
     time = 0;
     w = ofGetWidth();
     h = ofGetHeight();
@@ -55,6 +54,7 @@ void ofApp::setup(){
     fbo1.draw(0,0);
     noisy.end();
     noisefbo.end();
+    ofHideCursor();
 }
 
 //--------------------------------------------------------------
