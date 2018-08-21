@@ -16,5 +16,4 @@ int main( ){
     settings.windowMode = OF_WINDOW;
     ofCreateWindow(settings);
 	ofRunApp(new ofApp());
-
 }
