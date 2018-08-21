@@ -11,16 +11,21 @@ void ofApp::setup(){
     fbo2.allocate(1280,720);
     noisefbo.allocate(1280,720);
 
-    filler.load("shaders/doodle_mst");
-    //boss.load("shaders/bossr");
+    filler.load("shaders/heightflow");
+    boss.load("shaders/bossr");
     noisy.load("shaders/noisegen");
+    boss.begin();
+    boss.setUniform2f("size", 1280, 720);
+    boss.setUniform1f("hscale",40);
+    boss.setUniform1f("nscale",1);
+    boss.setUniform1f("dthresh",0.6f);
+    boss.setUniform1f("dfade",0.05f);
+    boss.setUniform1f("brightness",0.78f);
+    boss.setUniform3f("lightpos",0.665,0.15,3);
+    boss.setUniform2f("offset",1,1);
+    boss.end();
+    
     filler.begin();
-    filler.setUniform1f("hscale",40);
-    filler.setUniform1f("nscale",1);
-    filler.setUniform1f("dthresh",0.6f);
-    filler.setUniform1f("dfade",0.05f);
-    filler.setUniform1f("brightness",0.78f);
-    filler.setUniform3f("lightpos",0.665,0.15,3);
     filler.setUniform2f("size", 1280, 720);
     filler.setUniform1f("power",1.7f);
     filler.setUniform1f( "offset",2);
@@ -32,7 +37,6 @@ void ofApp::setup(){
     filler.setUniform1f("mixin",0.0098f);
     filler.setUniform1f("aspect",w/h);
     filler.setUniform1f("time",time);
-    filler.setUniform1f("use_heightflow",0);
     filler.end();
     
     fbo1.begin();
@@ -68,8 +72,6 @@ void ofApp::draw(){
     fbo1.begin();
     filler.begin();
     //filler.setUniform2f("size", w, h);
-    filler.setUniform1f("use_heightflow",1);
-    filler.setUniform1f( "offset",2);
     filler.setUniform1f("time",time);
     filler.setUniformTexture("tex1",noisefbo.getTexture(),1);
     fbo2.draw(0,0);
@@ -77,12 +79,10 @@ void ofApp::draw(){
     fbo1.end();
     
     fbo2.begin();
-    filler.begin();
-    filler.setUniform1f("use_heightflow",0);
-    filler.setUniform1f( "offset",1);
-    //filler.setUniform2f("size", w, h);
+    boss.begin();
+    //boss.setUniform2f("size", w, h);
     fbo1.draw(0,0);
-    filler.end();
+    boss.end();
     //ofDrawCircle(640,360,100);
     fbo2.end();
     fbo2.draw(0,0);
