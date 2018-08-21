@@ -90,7 +90,7 @@ public:
 };
 
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
 
 	public:
 		void setup();
@@ -98,15 +98,6 @@ class testApp : public ofBaseApp{
 		void draw();
     void doConstraint(pxBrush* pta,pxBrush* ptb,float restlength,float strength);
 
-		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
     pxConstraint** cc;
     pxBrush** bb;
     ofFbo fbb;

@@ -14,7 +14,7 @@ int h;
 ofMesh trik2;
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp::setup(){
     w = ofGetWidth();
 	h = ofGetHeight();
     ofDisableArbTex();
@@ -71,7 +71,7 @@ void testApp::setup(){
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ofApp::update(){
     timer++;
     if(timer>timerthresh){
         bb[int(ofRandom(BRUSHES))]->shift(ofVec3f(ofRandom(-20,20),ofRandom(-20,20),0));
@@ -92,7 +92,7 @@ void testApp::update(){
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
     ffb.begin();
     //ofSetTextureWrap(GL_REPEAT,GL_REPEAT);
     ofSetColor(255,255,255);
@@ -159,49 +159,4 @@ void testApp::draw(){
     boss.end();
     fbb.end();
     ffb.draw(0,0);
-}
-
-//--------------------------------------------------------------
-void testApp::keyPressed(int key){
-
-}
-
-//--------------------------------------------------------------
-void testApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
-
 }
